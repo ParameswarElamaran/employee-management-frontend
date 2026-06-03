@@ -7,7 +7,7 @@ function EmployeeList() {
   const [newRole, setNewRole] = useState("");
 
  useEffect(() => {
-  fetch("http://localhost:8080/api/employees")
+  fetch("https://employee-management-backend-oh7j.onrender.com/api/employees")
     .then((response) => response.json())
     .then((data) => {
       setEmployees(data);
@@ -19,7 +19,7 @@ function EmployeeList() {
 if (editIndex !== null) {
   const employeeId = employees[editIndex].id;
 
-  fetch(`http://localhost:8080/api/employees/${employeeId}`, {
+  fetch(`https://employee-management-backend-oh7j.onrender.com/api/employees/${employeeId}`), {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +39,7 @@ if (editIndex !== null) {
       setEditIndex(null);
     });
 } else {
-      fetch("http://localhost:8080/api/employees", {
+      fetch("https://employee-management-backend-oh7j.onrender.com/api/employees"), {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -58,7 +58,7 @@ body: JSON.stringify({
     setNewRole("");
   };
 const deleteEmployee = (id) => {
-  fetch(`http://localhost:8080/api/employees/${id}`, {
+  fetch(`https://employee-management-backend-oh7j.onrender.com/api/employees/${id}`)`, {
     method: "DELETE",
   })
     .then(() => {
