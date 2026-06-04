@@ -19,7 +19,7 @@ function EmployeeList() {
 if (editIndex !== null) {
   const employeeId = employees[editIndex].id;
 
-  fetch(`https://employee-management-backend-oh7j.onrender.com/api/employees/${employeeId}`), {
+  fetch(`https://employee-management-backend-oh7j.onrender.com/api/employees/${employeeId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +39,7 @@ if (editIndex !== null) {
       setEditIndex(null);
     });
 } else {
-      fetch("https://employee-management-backend-oh7j.onrender.com/api/employees"), {
+      fetch("https://employee-management-backend-oh7j.onrender.com/api/employees", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -58,7 +58,7 @@ body: JSON.stringify({
     setNewRole("");
   };
 const deleteEmployee = (id) => {
-  fetch(`https://employee-management-backend-oh7j.onrender.com/api/employees/${id}`)`, {
+  fetch(`https://employee-management-backend-oh7j.onrender.com/api/employees/${id}`, {
     method: "DELETE",
   })
     .then(() => {
