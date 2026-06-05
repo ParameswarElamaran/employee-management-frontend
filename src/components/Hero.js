@@ -7,7 +7,7 @@ function Hero(props) {
   const [message, setMessage] = useState("");
 
 useEffect(() => {
-  fetch("http://localhost:8080/api/message")
+  fetch("https://employee-management-backend-oh7j.onrender.com/api/message")
     .then((response) => response.text())
     .then((data) => {
       console.log(data);
