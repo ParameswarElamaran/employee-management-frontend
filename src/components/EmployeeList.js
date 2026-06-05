@@ -5,11 +5,36 @@ const [employees, setEmployees] = useState([]);
 const [newEmployee, setNewEmployee] = useState("");
 const [newRole, setNewRole] = useState("");
 const [editIndex, setEditIndex] = useState(null);
-
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
 useEffect(() => {
-fetch("https://employee-management-backend-oh7j.onrender.com/api/employees")
-.then((response) => response.json())
-.then((data) => setEmployees(data));
+  const fetchEmployees = async (retries = 3) => {
+    try {
+      const response = await fetch(
+        "https://employee-management-backend-oh7j.onrender.com/api/employees"
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed");
+      }
+
+      const data = await response.json();
+      setEmployees(data);
+      setError("");
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+
+      if (retries > 0) {
+        setTimeout(() => fetchEmployees(retries - 1), 5000);
+      } else {
+        setError("Server is waking up. Please refresh in a few seconds.");
+        setLoading(false);
+      }
+    }
+  };
+
+  fetchEmployees();
 }, []);
 
 const addEmployee = () => {
@@ -55,7 +80,10 @@ if (editIndex !== null) {
   )
     .then((response) => response.json())
     .then((savedEmployee) => {
-      setEmployees([...employees, savedEmployee]);
+      setEmployees((prevEmployees) => [
+  ...prevEmployees,
+  savedEmployee,
+]);
     });
 }
 
@@ -71,9 +99,9 @@ const deleteEmployee = (id) => {
       method: "DELETE",
     }
   ).then(() => {
-    setEmployees(
-      employees.filter((employee) => employee.id !== id)
-    );
+setEmployees((prevEmployees) =>
+  prevEmployees.filter((employee) => employee.id !== id)
+);
   });
 };
 
@@ -91,11 +119,11 @@ const likeEmployee = (id) => {
   )
     .then((response) => response.json())
     .then((updatedEmployee) => {
-      setEmployees(
-        employees.map((employee) =>
-          employee.id === id ? updatedEmployee : employee
-        )
-      );
+    setEmployees((prevEmployees) =>
+  prevEmployees.map((employee) =>
+    employee.id === id ? updatedEmployee : employee
+  )
+);
     });
 };
 
@@ -103,6 +131,17 @@ const likeEmployee = (id) => {
 return (
 <section style={{ padding: "40px", textAlign: "center" }}>
   <h2>Employees</h2>
+  {loading && (
+  <p style={{ color: "orange" }}>
+    Loading employees...
+  </p>
+)}
+
+{error && (
+  <p style={{ color: "red" }}>
+    {error}
+  </p>
+)}
 
   <input
     type="text"
