@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 
 function Hero(props) {
-  const [count, setCount] = useState(() => {
-  return Number(localStorage.getItem("portfolioLikes")) || 0;
-});
+
   const [message, setMessage] = useState("");
 
 useEffect(() => {
@@ -15,8 +13,10 @@ useEffect(() => {
     })
     .catch((error) => {
       console.log(error);
+      setMessage("Welcome to my portfolio!");
     });
 }, []);
+
 
   return (
     <section

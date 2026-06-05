@@ -58,10 +58,11 @@ if (editIndex !== null) {
   )
     .then((response) => response.json())
     .then((updatedEmployee) => {
-      const updatedEmployees = [...employees];
-      updatedEmployees[editIndex] = updatedEmployee;
-
-      setEmployees(updatedEmployees);
+     setEmployees((prevEmployees) =>
+  prevEmployees.map((employee, index) =>
+    index === editIndex ? updatedEmployee : employee
+  )
+);
       setEditIndex(null);
     });
 } else {
