@@ -65,16 +65,16 @@ setNewRole("");
 };
 
 const deleteEmployee = (id) => {
-fetch(
-https://employee-management-backend-oh7j.onrender.com/api/employees/${id},
-{
-method: "DELETE",
-}
-).then(() => {
-setEmployees(
-employees.filter((employee) => employee.id !== id)
-);
-});
+  fetch(
+    `https://employee-management-backend-oh7j.onrender.com/api/employees/${id}`,
+    {
+      method: "DELETE",
+    }
+  ).then(() => {
+    setEmployees(
+      employees.filter((employee) => employee.id !== id)
+    );
+  });
 };
 
 const editEmployee = (index) => {
@@ -82,27 +82,27 @@ setNewEmployee(employees[index].name);
 setNewRole(employees[index].role || "");
 setEditIndex(index);
 };
-
 const likeEmployee = (id) => {
-fetch(
-https://employee-management-backend-oh7j.onrender.com/api/employees/${id}/like,
-{
-method: "PUT",
-}
-)
-.then((response) => response.json())
-.then((updatedEmployee) => {
-setEmployees(
-employees.map((employee) =>
-employee.id === id ? updatedEmployee : employee
-)
-);
-});
+  fetch(
+    `https://employee-management-backend-oh7j.onrender.com/api/employees/${id}/like`,
+    {
+      method: "PUT",
+    }
+  )
+    .then((response) => response.json())
+    .then((updatedEmployee) => {
+      setEmployees(
+        employees.map((employee) =>
+          employee.id === id ? updatedEmployee : employee
+        )
+      );
+    });
 };
+
 
 return (
 <section style={{ padding: "40px", textAlign: "center" }}>
-Employees
+  <h2>Employees</h2>
 
   <input
     type="text"
