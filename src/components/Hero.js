@@ -1,21 +1,19 @@
 import { useState, useEffect } from "react";
 
 function Hero(props) {
-
   const [message, setMessage] = useState("");
 
-useEffect(() => {
-  fetch("https://employee-management-backend-oh7j.onrender.com/api/message")
-    .then((response) => response.text())
-    .then((data) => {
-      console.log(data);
-      setMessage(data);
-    })
-    .catch((error) => {
-      console.log(error);
-      setMessage("Welcome to my portfolio!");
-    });
-}, []);
+  useEffect(() => {
+    fetch("https://employee-management-backend-oh7j.onrender.com/api/message")
+      .then((response) => response.text())
+      .then((data) => {
+        setMessage(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setMessage("Welcome to my portfolio!");
+      });
+  }, []);
 
 
   return (
