@@ -31,25 +31,7 @@ useEffect(() => {
 
       <h3>{message}</h3>
 
-      <h3>Likes: {count}</h3>
-<button
-  onClick={() => {
-    const newCount = count + 1;
-    setCount(newCount);
-    localStorage.setItem("portfolioLikes", newCount);
-  }}
-  style={{
-    padding: "10px 20px",
-    fontSize: "16px",
-    cursor: "pointer",
-    borderRadius: "8px",
-    border: "none",
-    backgroundColor: "#222",
-    color: "white",
-  }}
->
-  Like 👍
-</button>
+
     </section>
   );
 }
