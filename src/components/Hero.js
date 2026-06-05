@@ -27,7 +27,7 @@ function Hero(props) {
 
       <p>{props.message}</p>
 
-      <h3>{message}</h3>
+      <h3>{message} </h3>
 
 
     </section>
