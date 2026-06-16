@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Skills from "./components/Skills";
@@ -21,14 +21,14 @@ function HomePage() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/employees" element={<EmployeeList />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
