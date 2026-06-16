@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function EmployeeList() {
 const [employees, setEmployees] = useState([]);
@@ -132,6 +133,19 @@ const likeEmployee = (id) => {
 return (
 <section style={{ padding: "40px", textAlign: "center" }}>
   <h2>Employees</h2>
+  <Link to="/">
+  <button
+    style={{
+      marginBottom: "20px",
+      padding: "10px 20px",
+      borderRadius: "8px",
+      cursor: "pointer",
+    }}
+  >
+    ← Back to Portfolio
+  </button>
+</Link>
+<h2>Employees</h2>
   {loading && (
   <p style={{ color: "orange" }}>
     Loading employees...
@@ -237,6 +251,7 @@ return (
         >
           Delete
         </button>
+        
       </div>
     </div>
   ))}
